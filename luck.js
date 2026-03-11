@@ -8,7 +8,7 @@ function Luck(text, sender) {
             .catch(err => alert("Кажется Вам, не повезло, возникла ошибка."));
         
     } else {
-        window.open("https://oiidwgfyo.com?directlink=1&code_type=1&sid=940695");
+        alert("Эх, не повезло.")
     }
     sender.remove();
 }
