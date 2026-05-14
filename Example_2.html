@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Методические рекомендации для практических работ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 25px;
+        }
+
+        .section {
+            margin-bottom: 25px;
+        }
+
+        .objective {
+            background: #e8f4fc;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 15px 0;
+        }
+
+        .steps {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        ol {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .important {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+
+        .materials {
+            background: #d1ecf1;
+            padding: 15px;
+            border-radius: 5px;
+        }
+        img {
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Экзамен 2 (пробный вариант)</h1>
+
+        <div class="section">
+            <h2>Постановка задачи</h2>
+            <div class="objective">
+                <br>Разработать REST API, который выполняет базовые функции CRUD (cсоздание, чтение, изменение, удаление).
+                <br>
+                <br>В качестве базы данных использовать MySQL или MSSQL, при работе желательно использовать EntityFramework.
+                <br>
+                <br>Для каждой CRUD операции, разработать конечную точку, соответствующего типа:
+                <br>1) Добавление – POST;
+                <br>2) Чтение – GET;
+                <br>3) Изменение – PUT;
+                <br>4) Удаление – DELETE;
+                <br>
+                <br>Для запроса GET, предусмотреть возможность сортировки и фильтрации отображаемых данных посредством указания параметров.
+                <br>
+                <br>Для каждого запроса, предусмотреть возвращаемые коды:
+                <br>1) 200 – запрос успешно выполнен;
+                <br>2) 201 – запрос успешно выполнен, в результате был создан новый ресурс;
+                <br>3) 400 – плохой запрос (не правильно указанные данные)
+                <br>4) 401 – пользователь не авторизован
+                <br>5) 403 – пользователь не имеет доступа к ресурсу
+                <br>6) 500 – ошибка сервера
+                <br>Кроме кода, необходимо чётко и понятно указать причину, возникновения ошибки.
+                <br>Например: 400 – плохой запрос (Поле login, имеет неверный формат). 
+                <br>
+                <br>Для разработанного RestAPI, реализовать документацию SWAGGER. К каждому запросу, параметру, коду ошибке, возвращаемым данным предоставить комментарии на русском языке.
+                <br>
+                <br>Для запросов типа POST, PUT, DELETE предусмотреть указание токена в заголовке запроса, полученного при авторизации пользователя (отдельный запрос), с разграничением доступа:
+                <br>Логин и пароль: 
+                <br>Admin – администратор системы (может добавлять, изменять и удалять)
+                <br>User – пользователь системы (может добавлять и изменять)
+                <br>
+                <br>Все вводимые значения необходимо проверять на корректность ввода, например:
+                <br>- дата и время – на дату и время;
+                <br>- длительность – на ввод только чисел;
+                <br>- ФИО на ввод только текстовых значений;
+                <br>- номер телефона на соответчике маски;
+                <br>- и т.д.
+                <br>в противном случае выводить ошибку 400 – плохой запрос.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Варианты задания</h2>
+            <div class="materials">
+                <b>Вариант №15: Бронирование номеров в отеле.</b>
+                <br>Бронирование номеров: 
+                <br>- дата и время бронирования [сортировка и фильтрация], 
+                <br>- длительность бронирования; 
+                <br>- клиент бронирования. 
+                <br>Клиент бронирования: 
+                <br>- ФИО [сортировка и фильтрация];
+                <br>- номер телефона, 
+                <br>- паспортные данные (серия, номер, дата выдачи, кем выдан).
+
+            </div>
+        </div>
+
+        <div class="important">
+            <h2>⚠️ Критерии оценки</h2>
+            <table border="1" style="width: 100%;">
+                <tr>
+                    <td style="text-align: center; background-color: white;">Критерий</td>
+                    <td style="text-align: center; background-color: white;">Балл</td>
+                </tr>
+                <tr>
+                    <td>
+                        Реализован GET запрос для первой сущности
+                        <br><span style="font-size: 14px;">(-2.5 балла если отсутствует сортировка или фильтрация)</span>
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Реализован GET запрос для второй сущности
+                        <br><span style="font-size: 14px;">(-2.5 балла если отсутствует сортировка или фильтрация)</span>
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Реализовано два POST запроса для сущностей
+                        <br><span style="font-size: 14px;">(-2.5 балла если отсутствует один из запросов)</span>
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Реализовано два PUT запроса для сущностей
+                        <br><span style="font-size: 14px;">(-2.5 балла если отсутствует один из запросов)</span>
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Реализовано два DELETE запроса для сущностей
+                        <br><span style="font-size: 14px;">(-2.5 балла если отсутствует один из запросов)</span>
+                    </td>
+                    <td style="text-align: center;">2.5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Действие POST, PUT, DELETE запросов происходит только при указанном токене
+                        <br><span style="font-size: 14px;">(-2 балла, если отсутствует разграничение прав доступа)</span>
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Вводимые значения проверяются на корректность ввода данных
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Запросы возвращают все указанные коды
+                        <br><span style="font-size: 14px;">(кроме кодов авторизации, если она не реализована)</span>
+                    </td>
+                    <td style="text-align: center;">5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Коды ошибок, указывают причину возникновения
+                    </td>
+                    <td style="text-align: center;">2.5</td>
+                </tr>
+                <tr>
+                    <td>
+                        Запросы задокументированы SWAGGER
+                        <span style="font-size: 14px;">
+                            <br>- 1 балл, если отсутствуют комментарии к описанию запросов
+                            <br>- 1 балл, если отсутствуют комментарии к параметрам запросов
+                            <br>- 1 балл, если отсутствуют комментарии к результату запросов
+                            <br>- 2 балла, если отсутствуют комментарии к ошибкам запросов
+                        </span>
+                    </td>
+                    <td style="text-align: center;">7.5</td>
+                </tr>
+                <tr>
+                    <td>
+                        При работе с базой данных используется EntityFramework 
+                    </td>
+                    <td style="text-align: center;">2.5</td>
+                </tr>
+                <tr>
+                    <td>Итого</td>
+                    <td style="text-align: center;">50</td>
+                </tr>
+            </table>
+
+            <br>Разбаловка:
+            <br>Баллы полученные за теоретический тест + балы полученные за практическое задание.
+            <br>95-100 баллов оценка - <b>отлично</b>
+            <br>85-94 баллов оценка - <b>хорошо</b>
+            <br>70-84 баллов оценка - <b>удовлетворительно</b>
+        </div>
+    </div>
+</body>
+</html>
